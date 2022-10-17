@@ -4,18 +4,19 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="USER"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2022-10-10 10:05:37 "/>
+        <attribute name="saved" value="2022-10-17 09:24:43 "/>
         <attribute name="created" value="VVNFUjtVU0VSLVBDOzIwMjItMTAtMDQ7IjEwOjU4OjM1ICI7MjAxOA=="/>
-        <attribute name="edited" value="VVNFUjtVU0VSLVBDOzIwMjItMTAtMTA7IjEwOjA1OjM3ICI7MzM7MjE3MA=="/>
+        <attribute name="edited" value="VVNFUjtVU0VSLVBDOzIwMjItMTAtMTc7IjA5OjI0OjQzICI7NDA7MjE4MQ=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="Declara&#231;&#227;o de vari&#225;veis"/>
             <declare name="total, votosRestantes, candidato, continuar" type="Integer" array="False" size=""/>
-            <declare name="votosInvalidos, votosMaeli, votosIvan, votosLinda, votosJoao" type="Integer" array="False" size=""/>
+            <declare name="votos, votosInvalidos, votosMaeli, votosIvan, votosLinda, votosJoao" type="Integer" array="False" size=""/>
             <declare name="resultados" type="Real" array="False" size=""/>
             <comment text="Iniciando as vari&#225;veis pois pode dar xabu se alguma delas n&#227;o receber algum valor"/>
+            <assign variable="votos" expression="0"/>
             <assign variable="votosInvalidos" expression="0"/>
             <assign variable="votosMaeli" expression="0"/>
             <assign variable="votosIvan" expression="0"/>
@@ -27,47 +28,54 @@
             <comment text="Loop fa&#231;a inicia aqui"/>
             <do expression="votosRestantes &gt; 0">
                 <comment text="ToChar(13) = quebra de linha&#13;&#10;&amp; = concatenador"/>
+                <output expression="&quot;Votos restantes - &quot; &amp; votosRestantes" newline="True"/>
                 <output expression="&quot;Digite o n&#250;mero do seu candidato&quot; &amp; ToChar(13) &#13;&#10;&amp; &#13;&#10;&quot;n 10 - Sra Maeli Gente Boa&quot; &amp; ToChar(13)&#13;&#10;&amp;&#13;&#10;&quot;n 47 - Sr Ivan do Brasil&quot; &amp; ToChar(13)&#13;&#10;&amp;&#13;&#10;&quot;n 31 - Dra Linda Progresso&quot; &amp; ToChar(13)&#13;&#10;&amp;&#13;&#10;&quot;n 38 - Seu Jo&#227;o de Ana&quot; &amp; ToChar(13)&#13;&#10;&amp;&#13;&#10;&quot;n 0 - nulo/branco&quot;" newline="True"/>
                 <input variable="candidato"/>
                 <comment text="Verifica qual candidato deve receber o voto&#13;&#10;TO-DO Extra - Modificar para que tanto os votos nulos/brancos estejam na mesma condicional"/>
                 <if expression="candidato = 0">
                     <then>
                         <output expression="&quot;Digite o n&#250;mero de pessoas que votaram nulo&quot;" newline="True"/>
-                        <input variable="votosInvalidos"/>
-                        <comment text="Diminui o valor de votosRestantes (condi&#231;&#227;o de parada do loop) baseado nos votos&#13;&#10;&#13;&#10;TO-DO - Adicionar uma vari&#225;vel geral votos para todas as condicionais desse loop, pois do jeito que est&#225;, sempre ir&#225; sobrescrever as vari&#225;veis que ser&#227;o mostradas na tela&#13;&#10;&#13;&#10;TO-DO Extra - Verificar se o valor de votos &#233; maior que o valor de votosRestantes"/>
+                        <input variable="votos"/>
+                        <assign variable="votosInvalidos" expression="votosInvalidos + votos"/>
+                        <comment text="Diminui o valor de votosRestantes (condi&#231;&#227;o de parada do loop) baseado nos votos&#13;&#10;&#13;&#10;TO-DO Extra - Verificar se o valor de votos &#233; maior que o valor de votosRestantes"/>
                         <assign variable="votosRestantes" expression="votosRestantes - votosInvalidos"/>
                     </then>
                     <else>
                         <if expression="candidato = 10">
                             <then>
                                 <output expression="&quot;Digite o n&#250;mero de pessoas que votaram na Sra Maeli Gente Boa&quot;" newline="True"/>
-                                <input variable="votosMaeli"/>
+                                <input variable="votos"/>
+                                <assign variable="votosMaeli" expression="votosMaeli + votos"/>
                                 <assign variable="votosRestantes" expression="votosRestantes - votosMaeli"/>
                             </then>
                             <else>
                                 <if expression="candidato = 47">
                                     <then>
                                         <output expression="&quot;Digite o n&#250;mero de pessoas que votaram na Sr Ivan do Brasil&quot;" newline="True"/>
-                                        <input variable="votosIvan"/>
+                                        <input variable="votos"/>
+                                        <assign variable="votosIvan" expression="votosIvan + votos"/>
                                         <assign variable="votosRestantes" expression="votosRestantes - votosIvan"/>
                                     </then>
                                     <else>
                                         <if expression="candidato = 31">
                                             <then>
                                                 <output expression="&quot;Digite o n&#250;mero de pessoas que votaram na Dra Linda Progresso&quot;" newline="True"/>
-                                                <input variable="votosLinda"/>
+                                                <input variable="votos"/>
+                                                <assign variable="votosLinda" expression="votosLinda + votos"/>
                                                 <assign variable="votosRestantes" expression="votosRestantes - votosLinda"/>
                                             </then>
                                             <else>
                                                 <if expression="candidato = 38">
                                                     <then>
                                                         <output expression="&quot;Digite o n&#250;mero de pessoas que votaram no Seu Jo&#227;o da Ana&quot;" newline="True"/>
-                                                        <input variable="votosJoao"/>
+                                                        <input variable="votos"/>
+                                                        <assign variable="votosJoao" expression="votosJoao + votos"/>
                                                         <assign variable="votosRestantes" expression="votosRestantes - votosJoao"/>
                                                     </then>
                                                     <else>
                                                         <output expression="&quot;Digite o n&#250;mero de pessoas que votaram nulo&quot;" newline="True"/>
-                                                        <input variable="votosInvalidos"/>
+                                                        <input variable="votos"/>
+                                                        <assign variable="votosInvalidos" expression="votosInvalidos + votos"/>
                                                         <assign variable="votosRestantes" expression="votosRestantes - votosInvalidos"/>
                                                     </else>
                                                 </if>
@@ -82,7 +90,6 @@
                 <comment text="TO-DO - Mudar visualiza&#231;&#227;o de votos para o final, pois ela s&#243; t&#225; aqui para testes de desenvolvimento"/>
                 <output expression="&quot;TOTAL DE VOTOS - &quot; &amp; total &amp; ToChar(13)&#13;&#10;&amp; &quot;VOTOS MAELI - &quot; &amp; votosMaeli &amp; ToChar(13)&#13;&#10;&amp; &quot;VOTOS IVAN - &quot; &amp; votosIvan &amp; ToChar(13)&#13;&#10;&amp; &quot;VOTOS LINDA - &quot; &amp; votosLinda &amp; ToChar(13)&#13;&#10;&amp; &quot;VOTOS JO&#195;O - &quot; &amp; votosJoao &amp; ToChar(13)&#13;&#10;&amp; &quot;VOTOS BRANCOS/NULOS - &quot; &amp; votosInvalidos &amp; ToChar(13)" newline="True"/>
                 <comment text="Isso aqui pode ficar ou mudar pro in&#237;cio do loop"/>
-                <output expression="&quot;Votos restantes - &quot; &amp; votosRestantes" newline="True"/>
             </do>
             <declare name="totalHomem, totalMulher" type="Integer" array="False" size=""/>
             <assign variable="totalHomem" expression="votosIvan + votosJoao"/>
@@ -130,7 +137,7 @@
                 </else>
             </if>
             <comment text="Nostrando porcentagem de votos de cada candidato"/>
-            <output expression="&quot;PORCENTAGEM MAELI - &quot; &amp; porcenMaeli * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM IVAN - &quot; &amp; porcenIvan * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM LINDA - &quot; &amp; porcenLinda * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM JO&#195;O - &quot; &amp; porcenJoao * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM INV&#193;LIDOS - &quot; &amp; porcenInvalidos * 100 &amp; &quot;%&quot; &amp; ToChar(13)" newline="True"/>
+            <output expression="&quot;PORCENTAGEM (V&#193;LIDOS) MAELI - &quot; &amp; porcenMaeli * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM (V&#193;LIDOS) IVAN - &quot; &amp; porcenIvan * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM (V&#193;LIDOS) LINDA - &quot; &amp; porcenLinda * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM (V&#193;LIDOS) JO&#195;O - &quot; &amp; porcenJoao * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM INV&#193;LIDOS - &quot; &amp; porcenInvalidos * 100 &amp; &quot;%&quot; &amp; ToChar(13)" newline="True"/>
             <output expression="&quot;PORCENTAGEM HOMEMS - &quot; &amp; porcenHomem * 100 &amp; &quot;%&quot; &amp; ToChar(13)&#13;&#10;&amp; &quot;PORCENTAGEM MULHERES - &quot; &amp; porcenMulher * 100 &amp; &quot;%&quot;" newline="True"/>
             <comment text="Se o tamanho da string vencedor for maior que 1, signifca que existe um vencedor no primeiro turno"/>
             <if expression="Len(vencedor) &gt; 1">
@@ -139,50 +146,6 @@
                 </then>
                 <else>
                     <output expression="&quot;Haver&#225; segundo turno!&quot;" newline="True"/>
-                    <comment text="TO-DO - Mostrar quais candidatos ir&#227;o para o segundo turno"/>
-                    <declare name="noSegundoTurno" type="String" array="True" size="2"/>
-                    <assign variable="noSegundoTurno[0]" expression="&quot;&quot;"/>
-                    <assign variable="noSegundoTurno[1]" expression="&quot;&quot;"/>
-                    <declare name="matrizCandidatos" type="String" array="True" size="4"/>
-                    <assign variable="matrizCandidatos[0]" expression="&quot;Sra Maeli Gente Boa&quot;"/>
-                    <assign variable="matrizCandidatos[1]" expression="&quot;Sr Ivan do Brasil&quot;"/>
-                    <assign variable="matrizCandidatos[2]" expression="&quot;Dra Linda Progresso&quot;"/>
-                    <assign variable="matrizCandidatos[3]" expression="&quot;Seu Jo&#227;o da Ana&quot;"/>
-                    <call expression="verificaSegundoTurno(votosMaeli, votosIvan, votosLinda, votosJoao)"/>
-                    <declare name="i" type="Integer" array="False" size=""/>
-                    <for variable="i" start="0" end="2" direction="inc" step="1">
-                        <if expression="verificaSegundoTurno(votosMaeli, votosIvan, votosLinda, votosJoao) = true&#13;&#10;&amp;&amp; noSegundoTurno[0] &lt;&gt; matrizCandidatos[0]&#13;&#10;&amp;&amp; noSegundoTurno[1] &lt;&gt; matrizCandidatos[0]">
-                            <then>
-                                <assign variable="noSegundoTurno[i]" expression="&quot;Sra Maeli Gente Boa&quot;"/>
-                                <output expression="noSegundoTurno[i]" newline="True"/>
-                            </then>
-                            <else>
-                                <if expression="verificaSegundoTurno(votosIvan, votosMaeli,votosLinda, votosJoao) = true&#13;&#10;&amp;&amp; noSegundoTurno[0] &lt;&gt; matrizCandidatos[0]&#13;&#10;&amp;&amp; noSegundoTurno[1] &lt;&gt; matrizCandidatos[0]">
-                                    <then>
-                                        <assign variable="noSegundoTurno[i]" expression="&quot;Sr Ivan do Brasil&quot;"/>
-                                        <output expression="noSegundoTurno[i]" newline="True"/>
-                                    </then>
-                                    <else>
-                                        <if expression="verificaSegundoTurno(votosLinda,votosIvan, votosMaeli,votosJoao)">
-                                            <then>
-                                                <output expression="&quot;Linda no segundo turno&quot;" newline="True"/>
-                                            </then>
-                                            <else>
-                                                <if expression="verificaSegundoTurno(votosJoao,votosIvan, votosLinda, votosMaeli)">
-                                                    <then>
-                                                        <output expression="&quot;Jo&#227;o no segundo turno&quot;" newline="True"/>
-                                                    </then>
-                                                    <else>
-                                                        <output expression="&quot;Algo de errado n&#227;o est&#225; certo&quot;" newline="True"/>
-                                                    </else>
-                                                </if>
-                                            </else>
-                                        </if>
-                                    </else>
-                                </if>
-                            </else>
-                        </if>
-                    </for>
                 </else>
             </if>
         </body>
