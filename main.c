@@ -4,6 +4,8 @@ int main(void) {
   int total, votosRestantes, candidato;
   int votosMaeli = 0, votosIvan = 0, votosLinda = 0, votosJoao = 0;
   int votosBrancos = 0, votosNulos = 0, votosInvalidos;
+  int maiorVoto, menorVoto;
+  float porcenMaeli, porcenIvan, porcenLinda, porcenJoao, porcenInvalidos;
 
   printf("Olá! por favor, digite o total de eleitores\n");
   scanf("%d", &total);
@@ -23,7 +25,6 @@ int main(void) {
     switch(candidato) {
       case 0:
         votosBrancos += 1;
-        votosInvalidos += 1;
         break;
       case 10:
         votosMaeli += 1;
@@ -39,18 +40,47 @@ int main(void) {
         break;
       default:
         votosNulos += 1;
-        votosInvalidos += 1;
     }
 
     votosRestantes -= 1;
     printf("Votos restantes - %d\n\n", votosRestantes);
   }
 
+  votosInvalidos = votosBrancos + votosNulos;
+
   printf("Total de Eleitores - %d\n", total);
   printf("Votos em Maeli - %d\n", votosMaeli);
   printf("Votos em Ivan - %d\n", votosIvan);
   printf("Votos em Linda - %d\n", votosLinda);
   printf("Votos em Joao - %d\n", votosJoao);
-  printf("Votos brancos/nulos - %d\n\n", votosInvalidos);
+  printf("Votos brancos - %d\n", votosBrancos);
+  printf("Votos nulos - %d\n\n", votosNulos);
+
+  /* 
+    Verifica quem teve o maior número de votos e assigna um número para quem teve o maior quantidade de votos
+    Maeli = 1; Ivan = 2; Linda = 3; Joao = 4
+  */
+  if (votosMaeli > votosIvan && votosMaeli > votosLinda && votosMaeli > votosJoao) {
+    maiorVoto = 1;
+  } else if (votosIvan > votosLinda && votosIvan > votosJoao) {
+    maiorVoto = 2;
+  } else if (votosLinda > votosJoao) {
+    maiorVoto = 3;
+  } else maiorVoto = 4;
+
+  /* 
+    Verifica quem teve o maior número de votos e assigna um número para quem teve o maior quantidade de votos
+    Maeli = 1; Ivan = 2; Linda = 3; Joao = 4
+  */
+  if (votosMaeli < votosIvan && votosMaeli < votosLinda && votosMaeli < votosJoao) {
+    menorVoto = 1;
+  } else if (votosIvan < votosLinda && votosIvan < votosJoao) {
+    menorVoto = 2;
+  } else if (votosLinda < votosJoao) {
+    menorVoto = 3;
+  } else menorVoto = 4;
+
+  printf("Maior voto - %d\nMenor voto - %d\n", maiorVoto, menorVoto);
+  
   return 0;
 }
