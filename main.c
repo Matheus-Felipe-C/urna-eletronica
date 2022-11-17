@@ -1,10 +1,13 @@
 #include <stdio.h>
 
 int main(void) {
-  int total, votosRestantes, candidato;
+  //Variáveis de uso geral
+  int total, votosRestantes, candidato, flag;
+  //Variáveis contendo os votos
   int votosMaeli = 0, votosIvan = 0, votosLinda = 0, votosJoao = 0;
-  int votosBrancos = 0, votosNulos = 0, votosInvalidos;
+  int votosBrancos = 0, votosNulos = 0, votosInvalidos, votosValidos;
   int maiorVoto, menorVoto;
+  //Variáveis contendo as porcentagens
   float porcenMaeli, porcenIvan, porcenLinda, porcenJoao, porcenInvalidos;
 
   printf("Olá! por favor, digite o total de eleitores\n");
@@ -46,6 +49,7 @@ int main(void) {
     printf("Votos restantes - %d\n\n", votosRestantes);
   }
 
+  votosValidos = votosMaeli + votosIvan + votosLinda + votosJoao;
   votosInvalidos = votosBrancos + votosNulos;
 
   printf("Total de Eleitores - %d\n", total);
@@ -81,6 +85,25 @@ int main(void) {
   } else menorVoto = 4;
 
   printf("Maior voto - %d\nMenor voto - %d\n", maiorVoto, menorVoto);
+
+  //Calcula as porcentagens de votos
+  //TO-DO - Verificar se quantidade de votos válidos é maior que 0
+  // Senão o código vai dar um problemão
+
+  //O (float) é para forçar que o resultado seja decimal, pois no C, divisão de números inteiros sempre dará um inteiro
+
+  porcenMaeli = (float) 100 * votosMaeli / votosValidos;
+  porcenIvan = (float) 100 * votosIvan / votosValidos;
+  porcenLinda = (float) 100 * votosLinda / votosValidos;
+  porcenJoao = (float) 100 * votosJoao / votosValidos;
+  porcenInvalidos = (float) 100 * votosInvalidos / votosValidos;
+
+  //O %.2f imprime apenas as duas primeiras casas decimais de números decimais
+  printf("%% Maeli - %.2f\n", porcenMaeli);
+  printf("%% Ivan - %.2f\n", porcenIvan);
+  printf("%% Linda - %.2f\n", porcenLinda);
+  printf("%% Ivan - %.2f\n", porcenJoao);
+  printf("%% Inválidos - %.2f\n", porcenInvalidos);
   
   return 0;
 }
