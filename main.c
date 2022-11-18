@@ -1,14 +1,17 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(void) {
   //Variáveis de uso geral
   int total, votosRestantes, candidato, flag;
+  char vencedor[20];
   //Variáveis contendo os votos
   int votosMaeli = 0, votosIvan = 0, votosLinda = 0, votosJoao = 0;
   int votosBrancos = 0, votosNulos = 0, votosInvalidos, votosValidos;
   int maiorVoto, menorVoto;
   //Variáveis contendo as porcentagens
   float porcenMaeli, porcenIvan, porcenLinda, porcenJoao, porcenInvalidos;
+  float porcenHomem, porcenMulher;
 
   printf("Olá! por favor, digite o total de eleitores\n");
   scanf("%d", &total);
@@ -97,6 +100,8 @@ int main(void) {
   porcenLinda = (float) 100 * votosLinda / votosValidos;
   porcenJoao = (float) 100 * votosJoao / votosValidos;
   porcenInvalidos = (float) 100 * votosInvalidos / votosValidos;
+  porcenHomem = (float) 100 * votosIvan + votosJoao / votosValidos;
+  porcenMulher = (float) 100 * votosMaeli + votosLinda / votosValidos;
 
   //O %.2f imprime apenas as duas primeiras casas decimais de números decimais
   printf("%% Maeli - %.2f\n", porcenMaeli);
@@ -104,6 +109,19 @@ int main(void) {
   printf("%% Linda - %.2f\n", porcenLinda);
   printf("%% Ivan - %.2f\n", porcenJoao);
   printf("%% Inválidos - %.2f\n", porcenInvalidos);
-  
+
+  //Verifica se há ganhador no primeiro turno
+  //strcpy = string copy, é uma função pronta da biblioteca string.h, que
+  // copia uma string (segundo parâmetro) em outra variável (primeiro parametro)
+  if (porcenMaeli > 50) strcpy(vencedor, "Sra Maeli Gente Boa");
+  else if (porcenIvan > 50) strcpy(vencedor, "Sr Ivan do Brasil");
+  else if (porcenLinda > 50) strcpy(vencedor, "Dra Linda Progresso");
+  else if (porcenJoao > 50) strcpy(vencedor, "Seu João da Ana");
+
+  //Verifica quem vai pro segundo turno
+
+  if (strlen(vencedor) > 0) printf("Vencedor - %s", vencedor);
+  else printf("Haverá segundo turno!");
+
   return 0;
 }
