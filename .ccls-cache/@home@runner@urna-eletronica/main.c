@@ -84,6 +84,10 @@ int main(void) {
       menorVoto = 3;
     } else menorVoto = 4;
     
+    
+
+
+
     //Calcula as porcentagens de votos
     //O (float) é para forçar que o resultado seja decimal, pois no C, divisão de números inteiros sempre dará um inteiro
     porcenMaeli = (float) 100 * votosMaeli / votosValidos;
@@ -110,10 +114,10 @@ int main(void) {
   //Verifica se há ganhador no primeiro turno
   //strcpy = string copy, é uma função pronta da biblioteca string.h, que
   // copia uma string (segundo parâmetro) em outra variável (primeiro parametro)
-  if (porcenMaeli > 50) strcpy(vencedor, "Sra Maeli Gente Boa");
-  else if (porcenIvan > 50) strcpy(vencedor, "Sr Ivan do Brasil");
-  else if (porcenLinda > 50) strcpy(vencedor, "Dra Linda Progresso");
-  else if (porcenJoao > 50) strcpy(vencedor, "Seu João da Ana");
+  if (porcenMaeli >= 50 && maiorVoto == 1) strcpy(vencedor, "Sra Maeli Gente Boa");
+  else if (porcenIvan >= 50 && maiorVoto == 2) strcpy(vencedor, "Sr Ivan do Brasil");
+  else if (porcenLinda >= 50 && maiorVoto == 3) strcpy(vencedor, "Dra Linda Progresso");
+  else if (porcenJoao >= 50 && maiorVoto == 4) strcpy(vencedor, "Seu João da Ana");
 
   //Imprime as informações
   printf("Total de Eleitores - %d\n", total);
@@ -136,6 +140,24 @@ int main(void) {
     if (strlen(vencedor) > 0) printf("Vencedor - %s", vencedor);
     else printf("Haverá segundo turno!");
   }
+    if (maiorVoto == 1){
+        printf ("\nMaeli teve a maior quantidade de votos");
+    } else if (maiorVoto == 2){
+        printf ("\nIvan teve a maior quantidade de votos");
+    } else if (maiorVoto == 3){
+        printf ("\nLinda teve a maior quantidade de votos");
+    } else if (maiorVoto == 4){
+        printf ("\nJoão teve a maior quantidade de votos");
+    } 
 
+    if (menorVoto == 1){
+        printf ("\nMaeli teve a menor quantidade de votos");
+    } else if (menorVoto == 2){
+        printf ("\nIvan teve a menor quantidade de votos");
+    } else if (menorVoto == 3){
+        printf ("\nLinda teve a menor quantidade de votos");
+    } else if (menorVoto == 4){
+        printf ("\nJoão teve a menor qunatidade de votos");
+    }
   return 0;
 }
