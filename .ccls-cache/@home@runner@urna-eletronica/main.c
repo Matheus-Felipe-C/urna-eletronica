@@ -97,16 +97,15 @@ int main(void) {
   } else {
     flag = 1;
     porcenInvalidos = 100;
+    porcenMaeli = 0;
+    porcenIvan = 0;
+    porcenLinda = 0;
+    porcenJoao = 0;
+    porcenHomem = 0;
+    porcenMulher = 0;
 
     printf("Todos os votos foram brancos ou nulos, favor refazer a eleição\n");
   }
-
-  //O %.2f imprime apenas as duas primeiras casas decimais de números decimais
-  printf("%% Maeli - %.2f\n", porcenMaeli);
-  printf("%% Ivan - %.2f\n", porcenIvan);
-  printf("%% Linda - %.2f\n", porcenLinda);
-  printf("%% Ivan - %.2f\n", porcenJoao);
-  printf("%% Inválidos - %.2f\n", porcenInvalidos);
 
   //Verifica se há ganhador no primeiro turno
   //strcpy = string copy, é uma função pronta da biblioteca string.h, que
@@ -124,6 +123,12 @@ int main(void) {
   printf("Votos em Joao - %d\n", votosJoao);
   printf("Votos brancos - %d\n", votosBrancos);
   printf("Votos nulos - %d\n\n", votosNulos);
+  //O %.2f imprime apenas as duas primeiras casas decimais de números decimais
+  printf("%% Maeli - %.2f\n", porcenMaeli);
+  printf("%% Ivan - %.2f\n", porcenIvan);
+  printf("%% Linda - %.2f\n", porcenLinda);
+  printf("%% Ivan - %.2f\n", porcenJoao);
+  printf("%% Inválidos - %.2f\n\n", porcenInvalidos);
   if (flag == 0)  {
     printf("Maior voto - %d\nMenor voto - %d\n", maiorVoto, menorVoto);
   
