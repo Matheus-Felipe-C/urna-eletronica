@@ -99,7 +99,7 @@ int main(void) {
   porcenIvan = (float) 100 * votosIvan / votosValidos;
   porcenLinda = (float) 100 * votosLinda / votosValidos;
   porcenJoao = (float) 100 * votosJoao / votosValidos;
-  porcenInvalidos = (float) 100 * votosInvalidos / votosValidos;
+  porcenInvalidos = (float) 100 * votosInvalidos / total;
   porcenHomem = (float) 100 * votosIvan + votosJoao / votosValidos;
   porcenMulher = (float) 100 * votosMaeli + votosLinda / votosValidos;
 
